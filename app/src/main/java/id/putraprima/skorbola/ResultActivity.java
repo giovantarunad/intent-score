@@ -7,30 +7,28 @@ import android.widget.TextView;
 
 public class ResultActivity extends AppCompatActivity {
 
-    private TextView result;
-    private TextView winner;
+    TextView result,winner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-        result = findViewById(R.id.textView2);
-        winner = findViewById(R.id.textView3);
+        result = findViewById(R.id.result);
+        winner = findViewById(R.id.winner);
 
         Bundle extras = getIntent().getExtras();
-        int homeResult = extras.getInt("HomeTextScore");
-        int awayResult = extras.getInt("AwayTextScore");
+        int homeResult = extras.getInt("homeScore");
+        int awayResult = extras.getInt("awayScore");
         String homeName = extras.getString("homeName");
         String awayName = extras.getString("awayName");
-
-        if (extras != null) {
-            result.setText(String.valueOf(homeResult) + "-" + String.valueOf(awayResult));
-            if (homeResult > awayResult) {
-                winner.setText(homeName + " memenangkan pertandingan");
-            } else if (homeResult < awayResult) {
-                winner.setText(awayName + " menangkan pertandingan");
-            } else {
-                winner.setText(" pertandingan imbang");
+        if(extras != null){
+            result.setText(String.valueOf(homeResult) + " - "+ String.valueOf(awayResult));
+            if(homeResult > awayResult){
+                winner.setText( homeName + " Memenangkan Pertandingan");
+            }else if(homeResult < awayResult){
+                winner.setText( awayName + " Memenangkan Pertandingan");
+            }else {
+                winner.setText("Pertandingan berakhir imbang");
             }
         }
     }
